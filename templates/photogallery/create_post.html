@@ -1,0 +1,12 @@
+{% extends 'photogallery/base.html' %}
+
+{% block content %}
+<div class="form-container">
+<h3>Create Your post here</h3>
+<form method="post" enctype="multipart/form-data">
+	{% csrf_token %}
+	{{ form.as_p }}
+	<button type="submit">Submit New Post</button>
+</form>
+</div>
+{% endblock %}

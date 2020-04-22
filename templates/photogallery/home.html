@@ -1,0 +1,13 @@
+{% extends 'photogallery/base.html' %}
+{% block content %}
+	<h4>Welcome to my homePage</h4>
+	<p>This page features the work of Gambian painters</p>
+	<ul>
+		{% for post in object_list %}
+		<div class="post">
+			<img src="{{ post.picture.url }}" alt="{{ post.title }}">
+			<p>{{ post.title }}</p>
+		</div>
+		{% endfor %}
+	</ul>
+{% endblock %}

@@ -1,0 +1,55 @@
+body {
+	box-sizing: border-box;
+	margin: 0;
+}
+
+.nav-bar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.nav-bar li {
+	float: left;
+	margin: 20px;
+
+}
+
+.nav-bar li a {
+	color: white;
+	text-align: center;
+	text-decoration: none;
+}
+
+.nav-bar #logo {
+	margin-right: 65%
+
+}
+
+.body {
+	margin: 10px;
+}
+
+.post {
+	width: 300px;
+	height: 400px;
+	float: left;
+	margin: 50px;
+
+}
+
+img {
+	width: 300px;
+	height: 400px;
+	border-radius: 8px;
+}
+
+.form-container {
+	margin: 60px;
+}
+
