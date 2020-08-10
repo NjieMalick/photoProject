@@ -25,7 +25,7 @@ SECRET_KEY = '1wa$(xkrx*z+86a+e&)go1z!!pado)i@0f@dp@m=3t&&%)evin'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['NjieMalick.pythonanywhere.com']
+ALLOWED_HOSTS = ['NjieMalick.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -74,19 +74,35 @@ WSGI_APPLICATION = 'photoproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'NjieMalick$malickDB',
-        'USER': 'NjieMalick',
-        'PASSWORD': 'malick@mysql',
-        'HOST': 'NjieMalick.mysql.pythonanywhere-services.com',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
-
+# [START db_setup]
+if os.getenv('GAE_APPLICATION', None):
+    # Running on production App Engine, so connect to Google Cloud SQL using
+    # the unix socket at /cloudsql/<your-cloudsql-connection string>
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '/cloudsql/code-labs-251710:europe-west1:photogalary-instance',
+            'USER': 'njie',
+            'PASSWORD': 'nippowet',
+            'NAME': 'photogallery',
+        }
     }
-}
+else:
+    # Running locally so connect to either a local MySQL instance or connect 
+    # to Cloud SQL via the proxy.  To start the proxy via command line: 
+    #    $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306 
+    # See https://cloud.google.com/sql/docs/mysql-connect-proxy
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+            'NAME': 'photogallery',
+            'USER': 'njie',
+            'PASSWORD': 'nippowet',
+        }
+    }
+# [END db_setup]
 
 
 # Password validation
